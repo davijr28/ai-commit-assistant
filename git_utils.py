@@ -8,7 +8,7 @@ def get_git_diff():
 
 
 def apply_commit(message):
-    if typer.confirm("Do you want to apply this commit?"):
+    if typer.confirm("Do you wish to apply this commit?"):
         result = subprocess.run(["git", "commit", "-m", message])
         return result.returncode == 0  # Returns True if success
     return False
