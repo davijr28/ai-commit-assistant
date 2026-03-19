@@ -31,13 +31,6 @@ def main(
         None, help="Language code (e.g., 'pt'). Leave blank for English."
     ),
 ):
-    # Check if API key is set
-    if not os.getenv("GEMINI_API_KEY"):
-        console.print(
-            f"[bold red]Error: Gemini API Key not found.[/bold red] Please, check [italic]python main.py help[/italic] to see the API setup instructions."
-        )
-        raise typer.Exit()
-
     # If no language specified, then default to English
     if language is None:
         language = "en"
@@ -59,6 +52,13 @@ def main(
     if not diff.strip():
         console.print(
             f"[yellow]Warning:[/yellow] No staged changes found. Please, check [italic]python main.py help[/italic] to see Git basics for this tool."
+        )
+        raise typer.Exit()
+
+    # Check if API key is set
+    if not os.getenv("GEMINI_API_KEY"):
+        console.print(
+            f"[bold red]Error: Gemini API Key not found.[/bold red] Please, check [italic]python main.py help[/italic] to see the API setup instructions."
         )
         raise typer.Exit()
 
